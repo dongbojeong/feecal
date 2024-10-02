@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>수수료 계산기</title>
+</head>
+<body>
+    <h1>수수료 계산기</h1>
+    <form id="fee-form">
+        <label for="amount">품대 입력(계약금액):</label>
+        <input type="number" id="amount" name="amount">
+        <label for="institution">기관 유형:</label>
+        <select id="institution" name="institution">
+            <option value="국가기관">국가기관</option>
+            <option value="자치단체">자치단체</option>
+            <option value="공공기관">공공기관</option>
+        </select>
+        <button type="submit">수수료 계산</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('fee-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const amount = document.getElementById('amount').value;
+            const institution = document.getElementById('institution').value;
+
+            fetch('/calculate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ amount: amount, institution_type: institution })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerText = '수수료: ' + data.fee + '원';
+            });
+        });
+    </script>
+</body>
+</html>
