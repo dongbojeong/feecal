@@ -1,24 +1,22 @@
+// 천 단위 구분자를 입력 필드에 실시간으로 표시
 document.getElementById('contractAmount').addEventListener('input', function (e) {
-    // 입력값에서 콤마 제거
-    let value = e.target.value.replace(/,/g, '');
-
-    // 숫자인지 확인한 후 천 단위로 포맷
+    let value = e.target.value.replace(/,/g, ''); // 기존 입력값에서 콤마 제거
     if (!isNaN(value) && value.length > 0) {
-        e.target.value = parseFloat(value).toLocaleString('ko-KR');
+        e.target.value = parseFloat(value).toLocaleString('ko-KR'); // 천 단위로 표시
     } else {
-        e.target.value = ''; // 숫자가 아닐 경우 빈 값으로
+        e.target.value = ''; // 숫자가 아닐 경우 빈 값 처리
     }
 });
 
-
+// 폼 제출 이벤트 처리
 document.getElementById('feeCalculator').addEventListener('submit', function (e) {
     e.preventDefault();
 
-    // 입력값에서 다시 숫자만 추출하여 계산에 사용
+    // 콤마를 제거하여 숫자만 추출
     const contractAmount = parseFloat(document.getElementById('contractAmount').value.replace(/,/g, ''));
     const institutionType = document.getElementById('institutionType').value;
     const feeType = document.getElementById('feeType').value;
-    
+
     let rate = 0;
 
     // 요율표 (PDF에 기반한 데이터)
