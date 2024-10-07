@@ -51,7 +51,13 @@
         <form id="feeCalculator">
             <label for="contractAmount">계약 금액 (원):</label>
             <input type="text" id="contractAmount" required>
-
+            <label for="institutionType">기관 구분:</label>
+               <select id="institutionType" name="institutionType">
+                 <option value="national">국가기관</option>
+                  <option value="local">지방자치단체</option>
+                  <option value="other">기타기관</option>
+                   </select>
+ 
             <label for="feeType">요율 타입:</label>
             <div>
                 <button type="button" onclick="setFeeType('A')">A Type</button>
