@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>계약 금액 입력</title>
+    <style>
+        .radio-group {
+            display: flex;
+            gap: 10px;
+        }
+        .radio-group label {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="radio"]:checked + label {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <h1>공사조달 수수료 계산기</h1>
@@ -17,14 +33,21 @@
             <option value="local">지방자치단체</option>
         </select>
         
-        <label for="feeType">요율 타입:</label>
-        <select id="feeType" name="feeType">
-            <option value="A">A Type</option>
-            <option value="B">B Type</option>
-            <option value="C">C Type</option>
-            <option value="D">D Type</option>
-        </select>
-        
+        <label>요율 타입:</label>
+        <div class="radio-group">
+            <input type="radio" id="typeA" name="feeType" value="A" required>
+            <label for="typeA">A Type</label>
+            
+            <input type="radio" id="typeB" name="feeType" value="B" required>
+            <label for="typeB">B Type</label>
+            
+            <input type="radio" id="typeC" name="feeType" value="C" required>
+            <label for="typeC">C Type</label>
+            
+            <input type="radio" id="typeD" name="feeType" value="D" required>
+            <label for="typeD">D Type</label>
+        </div>
+
         <button type="submit">계산하기</button>
     </form>
     
