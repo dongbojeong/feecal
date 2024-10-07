@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let applicableRates = institutionType === 'national' ? ratesNational : ratesLocal;
 
+        // 금액 구간에 따라 요율 적용
         if (contractAmount <= 10000000000) {
             rate = applicableRates[feeType][0];
         } else if (contractAmount <= 50000000000) {
@@ -50,7 +51,8 @@ document.addEventListener('DOMContentLoaded', function () {
             rate = applicableRates[feeType][4];
         }
 
-        const fee = contractAmount * rate;
+        // 수수료 계산 후 반올림하여 소수점 제거
+        const fee = Math.floor(contractAmount * rate);  // 소수점 이하 버림
         const formattedAmount = contractAmount.toLocaleString('ko-KR');
         const formattedFee = fee.toLocaleString('ko-KR');
 
