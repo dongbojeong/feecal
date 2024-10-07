@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             rate = applicableRates[feeType][4];
         }
 
-        // 수수료 계산 후 반올림하여 소수점 제거
+        // 수수료 계산 후 소수점 이하 내림 처리
         const fee = Math.floor(contractAmount * rate);  // 소수점 이하 버림
         const formattedAmount = contractAmount.toLocaleString('ko-KR');
         const formattedFee = fee.toLocaleString('ko-KR');
