@@ -7,17 +7,25 @@
 </head>
 <body>
     <h1>시설공사 수수료 계산기</h1>
-    
     <label for="contractAmount">계약금액(천단위 구분): </label>
-    <input type="text" id="contractAmount" oninput="formatAmount(this)" placeholder="1,000,000">
+<input type="text" id="contractAmount" oninput="formatAmount(this)" placeholder="1,000,000">
+
 <script>
     function formatAmount(input) {
-        // 입력 필드에서 천단위 콤마를 실시간으로 적용
-        let value = input.value.replace(/,/g, '');  // 기존 입력에서 콤마 제거
-        value = value.replace(/\D/g, '');  // 숫자가 아닌 모든 문자를 제거
-        input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');  // 천단위 콤마 추가
+        // 기존 콤마 제거
+        let value = input.value.replace(/,/g, '');
+
+        // 숫자만 남기고 처리
+        value = value.replace(/\D/g, '');
+
+        // 천 단위 구분자 콤마 추가
+        if (value) {
+            input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
     }
 </script>
+
+   
     
     
     <label for="category">구분: </label>
