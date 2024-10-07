@@ -4,76 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공사조달 수수료 계산기</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        input[type="text"], select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-        }
-        .type-buttons {
-            margin-top: 10px;
-        }
-        button {
-            padding: 10px 15px;
-            margin: 5px;
-            cursor: pointer;
-        }
-        .result {
-            margin-top: 20px;
-            background-color: #e0e0e0;
-            padding: 10px;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>공사조달 수수료 계산기</h1>
-        <form id="feeCalculator">
-            <label for="contractAmount">계약 금액 (원):</label>
-            <input type="text" id="contractAmount" name="contractAmount" required>
+    <h1>공사조달 수수료 계산기</h1>
+    
+    <form id="feeCalculator">
+        <label for="contractAmount">계약 금액 (원):</label>
+        <input type="text" id="contractAmount" name="contractAmount" required><br>
 
-            <label for="institutionType">구분:</label>
-            <select id="institutionType" name="institutionType">
-                <option value="national">국가기관</option>
-                <option value="local">지방자치단체</option>
-                <option value="others">기타 기관</option>
-            </select>
+        <label for="institutionType">기관 구분:</label>
+        <select id="institutionType" name="institutionType">
+            <option value="national">국가기관</option>
+            <option value="local">지방자치단체</option>
+        </select><br>
 
-            <div class="type-buttons">
-                <button type="button" data-type="A">A Type</button>
-                <button type="button" data-type="B">B Type</button>
-                <button type="button" data-type="C">C Type</button>
-                <button type="button" data-type="D">D Type</button>
-            </div>
+        <label>요율 타입 선택:</label>
+        <div class="type-buttons">
+            <button type="button" data-type="A">A Type</button>
+            <button type="button" data-type="B">B Type</button>
+            <button type="button" data-type="C">C Type</button>
+            <button type="button" data-type="D">D Type</button>
+        </div><br>
 
-            <div class="result">
-                <h2>결과</h2>
-                <p id="result"></p>
-            </div>
-        </form>
-    </div>
+        <button type="submit">계산하기</button>
+    </form>
+
+    <h2>결과</h2>
+    <p id="result"></p>
 
     <script src="script.js"></script>
 </body>
