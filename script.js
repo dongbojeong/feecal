@@ -1,10 +1,15 @@
 document.getElementById('contractAmount').addEventListener('input', function (e) {
-    // 입력된 값에서 숫자만 남기기
+    // 입력값에서 콤마 제거
     let value = e.target.value.replace(/,/g, '');
-    
-    // 천 단위 구분자를 다시 추가하여 표시
-    e.target.value = parseFloat(value).toLocaleString('ko-KR');
+
+    // 숫자인지 확인한 후 천 단위로 포맷
+    if (!isNaN(value) && value.length > 0) {
+        e.target.value = parseFloat(value).toLocaleString('ko-KR');
+    } else {
+        e.target.value = ''; // 숫자가 아닐 경우 빈 값으로
+    }
 });
+
 
 document.getElementById('feeCalculator').addEventListener('submit', function (e) {
     e.preventDefault();
