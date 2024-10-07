@@ -15,7 +15,7 @@ document.getElementById('feeCalculator').addEventListener('submit', function (e)
     // 콤마를 제거하여 숫자만 추출
     const contractAmount = parseFloat(document.getElementById('contractAmount').value.replace(/,/g, ''));
     const institutionType = document.getElementById('institutionType').value;
-    const feeType = document.getElementById('feeType').value;
+    const feeType = document.querySelector('input[name="feeType"]:checked').value;
 
     let rate = 0;
 
