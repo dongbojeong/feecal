@@ -15,7 +15,14 @@ document.getElementById('feeCalculator').addEventListener('submit', function (e)
     // 콤마를 제거하여 숫자만 추출
     const contractAmount = parseFloat(document.getElementById('contractAmount').value.replace(/,/g, ''));
     const institutionType = document.getElementById('institutionType').value;
-    const feeType = document.querySelector('input[name="feeType"]:checked').value;
+
+    // feeType 선택 여부를 확인하고 처리
+    const feeTypeElement = document.querySelector('input[name="feeType"]:checked');
+    if (!feeTypeElement) {
+        alert('요율 타입을 선택해주세요.');
+        return; // 선택되지 않았을 경우 함수 종료
+    }
+    const feeType = feeTypeElement.value;
 
     let rate = 0;
 
