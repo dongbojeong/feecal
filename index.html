@@ -11,18 +11,14 @@
 <input type="text" id="contractAmount" oninput="formatAmount(this)" placeholder="1,000,000">
 
 <script>
-    function formatAmount(input) {
-        // 기존 콤마 제거
-        let value = input.value.replace(/,/g, '');
-
-        // 숫자만 남기고 처리
-        value = value.replace(/\D/g, '');
-
-        // 천 단위 구분자 콤마 추가
-        if (value) {
-            input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        }
-    }
+    document.getElementById('contractAmount').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/,/g, ''); // 기존 입력값에서 콤마 제거
+            if (!isNaN(value) && value.length > 0) {
+                e.target.value = parseFloat(value).toLocaleString('ko-KR'); // 천 단위로 표시
+            } else {
+                e.target.value = ''; // 숫자가 아닐 경우 빈 값 처리
+            }
+        });
 </script>
 
    
