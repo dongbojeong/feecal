@@ -30,7 +30,7 @@ function calculateFee() {
     let result = `
         계약금액 ${contractAmount.toLocaleString('ko-KR')}원을 기준으로 아래 계산에 따라<br>
         ${contractAmount.toLocaleString('ko-KR')} * ${selectedRate} = ${fee.toFixed(3)}<br>
-        최종 수수료: ${truncatedFee.toLocaleString('ko-KR')}원
+        최수수료: ${truncatedFee.toLocaleString('ko-KR')}원
     `;
     
     document.getElementById("calculationResult").innerHTML = result;
