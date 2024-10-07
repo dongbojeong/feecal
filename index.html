@@ -3,57 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>계약 금액 입력</title>
+    <title>공사조달 수수료 계산기</title>
     <style>
-        .radio-group {
-            display: flex;
-            gap: 10px;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f4f4f4;
         }
-        .radio-group label {
+        h1 {
+            text-align: center;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label, button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+        button {
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        input[type="radio"]:checked + label {
-            background-color: #007bff;
+            font-size: 16px;
+            background-color: #4CAF50;
             color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1>공사조달 수수료 계산기</h1>
-    <form id="feeCalculator">
-        <label for="contractAmount">계약 금액 (원):</label>
-        <input type="text" id="contractAmount" name="contractAmount" required>
-        
-        <label for="institutionType">기관 구분:</label>
-        <select id="institutionType" name="institutionType">
-            <option value="national">국가기관</option>
-            <option value="local">지방자치단체</option>
-        </select>
-        
-        <label>요율 타입:</label>
-        <div class="radio-group">
-            <input type="radio" id="typeA" name="feeType" value="A" required>
-            <label for="typeA">A Type</label>
-            
-            <input type="radio" id="typeB" name="feeType" value="B" required>
-            <label for="typeB">B Type</label>
-            
-            <input type="radio" id="typeC" name="feeType" value="C" required>
-            <label for="typeC">C Type</label>
-            
-            <input type="radio" id="typeD" name="feeType" value="D" required>
-            <label for="typeD">D Type</label>
-        </div>
+    <div class="container">
+        <h1>공사조달 수수료 계산기</h1>
+        <form id="feeCalculator">
+            <label for="contractAmount">계약 금액 (원):</label>
+            <input type="text" id="contractAmount" required>
 
-        <button type="submit">계산하기</button>
-    </form>
-    
-    <h2>결과</h2>
-    <p id="result"></p>
-    
-    <script src="script.js" defer></script>
+            <label for="feeType">요율 타입:</label>
+            <div>
+                <button type="button" onclick="setFeeType('A')">A Type</button>
+                <button type="button" onclick="setFeeType('B')">B Type</button>
+                <button type="button" onclick="setFeeType('C')">C Type</button>
+                <button type="button" onclick="setFeeType('D')">D Type</button>
+            </div>
+
+            <button type="submit">계산하기</button>
+        </form>
+
+        <h2>결과</h2>
+        <p id="result"></p>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
