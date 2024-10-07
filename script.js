@@ -100,3 +100,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
  
+const contractAmountElement = document.getElementById('contractAmount');
+if (contractAmountElement !== null) {
+    const contractAmount = contractAmountElement.value;
+    // 로직 실행
+} else {
+    console.error("contractAmount 요소를 찾을 수 없습니다.");
+}
