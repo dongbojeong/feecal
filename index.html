@@ -3,99 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>수수료 계산기</title>
-    <style>
-        /* 간단한 스타일 */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-        input[type="text"] {
-            width: 300px;
-            padding: 5px;
-            margin-bottom: 10px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .result {
-            margin-top: 20px;
-            font-weight: bold;
-        }
-    </style>
+    <title>공사조달 수수료 계산기</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="container">
+        <h1>시설공사 수수료 계산</h1>
+        <div class="form-group">
+            <label for="contractAmount">적용기준(계약금액):</label>
+            <input type="text" id="contractAmount" placeholder="계약 금액 입력" oninput="formatNumber(this)">
+        </div>
+        <div class="form-group">
+            <label for="category">구분:</label>
+            <select id="category">
+                <option value="국가기관">국가기관</option>
+                <option value="지방자치단체">지방자치단체</option>
+                <option value="기타기관">기타기관</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="rate">요율:</label>
+            <div id="rateOptions">
+                <button onclick="selectRate(0.0025)">A Type</button>
+                <button onclick="selectRate(0.0026)">B Type</button>
+                <button onclick="selectRate(0.0027)">C Type</button>
+                <button onclick="selectRate(0.0028)">D Type</button>
+            </div>
+        </div>
+        <button onclick="calculateFee()">계산</button>
 
-    <h1>시설공사 수수료 계산기</h1>
-    
-    <label for="contractAmount">계약 금액을 입력하세요:</label>
-    <input type="text" id="contractAmount" placeholder="계약 금액 (숫자만 입력)">
-    
-    <label for="feeType">요율 타입을 선택하세요:</label>
-    <select id="feeType">
-        <option value="A">A Type</option>
-        <option value="B">B Type</option>
-        <option value="C">C Type</option>
-        <option value="D">D Type</option>
-    </select>
-    
-    <button id="calculateBtn">계산하기</button>
-    
-    <div class="result" id="result"></div>
-    
-    <script>
-        // 계약금액 입력 시 천 단위 구분
-        document.getElementById('contractAmount').addEventListener('input', function (e) {
-            let value = e.target.value.replace(/,/g, ''); // 기존 입력값에서 콤마 제거
-            if (!isNaN(value) && value.length > 0) {
-                e.target.value = parseFloat(value).toLocaleString('ko-KR'); // 천 단위로 표시
-            } else {
-                e.target.value = ''; // 숫자가 아닐 경우 빈 값 처리
-            }
-        });
+        <div class="output">
+            <h2>산출내역</h2>
+            <p id="calculationResult"></p>
+            <p>※ 이 프로그램은 계약조건에 따라 수수료가 변경될 수도 있습니다!</p>
+        </div>
+    </div>
 
-        // 수수료 계산
-        document.getElementById('calculateBtn').addEventListener('click', function () {
-            const contractAmount = parseFloat(document.getElementById('contractAmount').value.replace(/,/g, '')); // 콤마 제거 후 숫자로 변환
-            const feeType = document.getElementById('feeType').value;
-            let rate = 0;
-
-            // 요율표
-            const rates = {
-                'A': 0.004,
-                'B': 0.003,
-                'C': 0.002,
-                'D': 0.0015
-            };
-
-            rate = rates[feeType];
-            
-            if (!isNaN(contractAmount)) {
-                let fee = contractAmount * rate;
-                let finalFee = Math.floor(fee / 10) * 10; // 수수료 소수점 이하 절삭
-                
-                // 결과 출력
-                document.getElementById('result').innerHTML = `
-                    계약 금액: ${contractAmount.toLocaleString('ko-KR')}원<br>
-                    수수료 (${feeType} Type): ${finalFee.toLocaleString('ko-KR')}원<br>
-                    이 프로그램은 계약조건에 따라 수수료가 변경될 수도 있습니다.
-                `;
-            } else {
-                document.getElementById('result').innerHTML = '계약 금액을 올바르게 입력하세요.';
-            }
-        });
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
