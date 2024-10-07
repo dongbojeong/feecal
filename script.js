@@ -38,6 +38,12 @@ document.getElementById('feeCalculator').addEventListener('submit', function (e)
     }
 
     const fee = contractAmount * rate;
-    document.getElementById('result').textContent = `계약 금액: ${contractAmount.toLocaleString()}원, 수수료: ${fee.toLocaleString()}원`+ <br>
-        이프로그램은 계약조건에 따라 수수료가 변경될 수도 있습니다.;
+    const formattedAmount = contractAmount.toLocaleString();
+    const formattedFee = fee.toLocaleString();
+
+    document.getElementById('result').innerHTML = `
+        계약 금액: ${formattedAmount}원, 
+        수수료 (${feeType} Type): ${formattedFee}원<br>
+        이 프로그램은 계약조건에 따라 수수료가 변경될 수도 있습니다.
+    `;
 });
