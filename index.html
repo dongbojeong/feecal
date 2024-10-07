@@ -10,6 +10,15 @@
     
     <label for="contractAmount">계약금액(천단위 구분): </label>
     <input type="text" id="contractAmount" oninput="formatAmount(this)" placeholder="1,000,000">
+<script>
+    function formatAmount(input) {
+        // 입력 필드에서 천단위 콤마를 실시간으로 적용
+        let value = input.value.replace(/,/g, '');  // 기존 입력에서 콤마 제거
+        value = value.replace(/\D/g, '');  // 숫자가 아닌 모든 문자를 제거
+        input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');  // 천단위 콤마 추가
+    }
+</script>
+    
     
     <label for="category">구분: </label>
     <select id="category">
