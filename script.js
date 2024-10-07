@@ -1,7 +1,16 @@
+document.getElementById('contractAmount').addEventListener('input', function (e) {
+    // 입력된 값에서 숫자만 남기기
+    let value = e.target.value.replace(/,/g, '');
+    
+    // 천 단위 구분자를 다시 추가하여 표시
+    e.target.value = parseFloat(value).toLocaleString('ko-KR');
+});
+
 document.getElementById('feeCalculator').addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const contractAmount = parseFloat(document.getElementById('contractAmount').value);
+    // 입력값에서 다시 숫자만 추출하여 계산에 사용
+    const contractAmount = parseFloat(document.getElementById('contractAmount').value.replace(/,/g, ''));
     const institutionType = document.getElementById('institutionType').value;
     const feeType = document.getElementById('feeType').value;
     
@@ -38,8 +47,8 @@ document.getElementById('feeCalculator').addEventListener('submit', function (e)
     }
 
     const fee = contractAmount * rate;
-    const formattedAmount = contractAmount.toLocaleString();
-    const formattedFee = fee.toLocaleString();
+    const formattedAmount = contractAmount.toLocaleString('ko-KR');
+    const formattedFee = fee.toLocaleString('ko-KR');
 
     document.getElementById('result').innerHTML = `
         계약 금액: ${formattedAmount}원, 
