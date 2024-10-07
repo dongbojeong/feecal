@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('모든 필드를 입력하세요.');
             return;
         }
-
+        
+});
+});
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('contractAmount').addEventListener('input', function (e) {
         let value = e.target.value.replace(/,/g, ''); // 콤마 제거
@@ -19,6 +21,12 @@ document.addEventListener('DOMContentLoaded', function () {
             e.target.value = ''; // 숫자가 아닐 경우 빈 값 처리
         }
     });
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('feeCalculator').addEventListener('submit', function (e) {
+        e.preventDefault();
+        // 계약 금액 및 요율 타입을 읽고 처리
+    });
+});
 
     // 폼 제출 이벤트 처리
     document.getElementById('feeCalculator').addEventListener('submit', function (e) {
