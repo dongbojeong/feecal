@@ -59,7 +59,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // Calculate fee with three decimal places
         const fee = contractAmount * rate;
         const feeWithThreeDecimals = fee.toFixed(3);
-        const finalFee = Math.floor(fee);  // Truncate to remove decimal places for the final fee
+
+        // 최종 수수료는 소수점 이하를 버리고 마지막 자리수까지 절삭 (천 단위 절삭)
+        const finalFee = Math.floor(fee / 10) * 10;  // 소수점 이하를 절삭 후 마지막 자리를 절삭
 
         // Display results
         result.innerHTML = `
