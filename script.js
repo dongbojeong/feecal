@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const applicableRates = rates[institutionType][selectedType];
 
+        // Determine rate based on contract amount
         if (contractAmount <= 10000000000) {
             rate = applicableRates[0];
         } else if (contractAmount <= 50000000000) {
@@ -55,10 +56,18 @@ document.addEventListener('DOMContentLoaded', function () {
             rate = applicableRates[4];
         }
 
+        // Calculate fee with three decimal places
         const fee = contractAmount * rate;
-        const formattedFee = Math.floor(fee).toLocaleString('ko-KR');
+        const feeWithThreeDecimals = fee.toFixed(3);
+        const finalFee = Math.floor(fee);  // Truncate to remove decimal places for the final fee
 
-        result.innerHTML = `계약 금액: ${contractAmount.toLocaleString('ko-KR')}원, 수수료 (${selectedType} Type): ${formattedFee}원<br>
-                            이 프로그램은 계약조건에 따라 수수료가 변경될 수도 있습니다.`;
+        // Display results
+        result.innerHTML = `
+            계약 금액: ${contractAmount.toLocaleString('ko-KR')}원<br>
+            수수료 (${selectedType} Type, 소수점 3자리): ${feeWithThreeDecimals}원<br>
+            최종 수수료: ${finalFee.toLocaleString('ko-KR')}원<br>
+            <br>
+            이 프로그램은 계약조건에 따라 수수료가 변경될 수도 있습니다.
+        `;
     }
 });
