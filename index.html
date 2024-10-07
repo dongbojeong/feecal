@@ -113,11 +113,11 @@
 
             if (!isNaN(contractAmount) && rate) {
                 const fee = contractAmount * rate;
-                const truncatedFee = Math.floor(fee); // 소수점 절삭
+                const truncatedFee = Math.floor(fee / 10) * 10; // 원 단위 절삭
                 document.getElementById('result').innerHTML = `
                     계약금액 ${contractAmount.toLocaleString()}원을 기준할시 아래 계산에 따라<br>
                     ${contractAmount.toLocaleString()} * ${rate} = ${fee.toFixed(3)}<br>
-                    계: ${truncatedFee.toLocaleString()} 원
+                    수수료: ${truncatedFee.toLocaleString()} 원
                 `;
             } else {
                 document.getElementById('result').innerHTML = "계약금액을 입력해 주세요.";
