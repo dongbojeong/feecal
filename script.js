@@ -1,17 +1,18 @@
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('feeCalculator').addEventListener('submit', function (e) {
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('feeCalculator');
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
-        const contractAmount = document.getElementById('contractAmount').value;
-        const institutionType = document.getElementById('institutionType').value;
-        const feeType = document.getElementById('feeType').value;
-
-        if (!contractAmount || !institutionType || !feeType) {
-            alert('모든 필드를 입력하세요.');
-            return;
-        }
         
+        const contractAmount = document.getElementById('contractAmount').value;
+        if (contractAmount) {
+            // 계약 금액 처리 로직
+            console.log(contractAmount);
+        } else {
+            console.error("계약 금액 입력 필드가 비어 있습니다.");
+        }
+    });
 });
-});
+
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('contractAmount').addEventListener('input', function (e) {
         let value = e.target.value.replace(/,/g, ''); // 콤마 제거
