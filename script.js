@@ -84,4 +84,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-       
+      document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('feeCalculator').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const contractAmount = parseFloat(document.getElementById('contractAmount').value.replace(/,/g, ''));
+        const institutionType = document.getElementById('institutionType').value;
+        const feeType = document.getElementById('feeType').value;
+
+        let rate = 0;
+        // 요율표 로직...
+        const fee = Math.floor(contractAmount * rate); // 소수점 내림
+        document.getElementById('result').innerHTML = `수수료는 ${fee}원입니다.`;
+    });
+});
+ 
